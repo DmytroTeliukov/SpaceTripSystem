@@ -10,18 +10,10 @@ import java.util.Base64;
 import java.util.Random;
 
 public class SecurityPassword {
-    private static final Random RANDOM = new SecureRandom();
-    private static final String ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     private static final int ITERATIONS = 10000;
+    private static final String SALT = "t6kogcjo2OgnjbyV/SOh5s42TvQoCt+RhsZ5rlqZpMw=";
     private static final int KEY_LENGTH = 256;
 
-    public static String getSalt(int length) {
-        StringBuilder returnValue = new StringBuilder(length);
-        for (int i = 0; i < length; i++) {
-            returnValue.append(ALPHABET.charAt(RANDOM.nextInt(ALPHABET.length())));
-        }
-        return new String(returnValue);
-    }
     public static byte[] hash(char[] password, byte[] salt) {
         PBEKeySpec spec = new PBEKeySpec(password, salt, ITERATIONS, KEY_LENGTH);
         Arrays.fill(password, Character.MIN_VALUE);
@@ -34,26 +26,15 @@ public class SecurityPassword {
             spec.clearPassword();
         }
     }
-    public static String generateSecurePassword(String password, String salt) {
-        String returnValue = null;
-        byte[] securePassword = hash(password.toCharArray(), salt.getBytes());
+    public static String generateSecurePassword(String password) {
+        byte[] securePassword = hash(password.toCharArray(), SALT.getBytes());
 
-        returnValue = Base64.getEncoder().encodeToString(securePassword);
-
-        return returnValue;
+        return Base64.getEncoder().encodeToString(securePassword);
     }
 
-    public static boolean verifyUserPassword(String providedPassword,
-                                             String securedPassword, String salt)
-    {
-        boolean returnValue = false;
+    public static boolean verifyUserPassword(String providedPassword, String securedPassword) {
+        String newSecurePassword = generateSecurePassword(providedPassword);
 
-        // Generate New secure password with the same salt
-        String newSecurePassword = generateSecurePassword(providedPassword, salt);
-
-        // Check if two passwords are equal
-        returnValue = newSecurePassword.equalsIgnoreCase(securedPassword);
-
-        return returnValue;
+        return newSecurePassword.equalsIgnoreCase(securedPassword);
     }
 }

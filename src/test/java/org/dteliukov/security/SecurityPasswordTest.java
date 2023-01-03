@@ -6,13 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class SecurityPasswordTest {
 
-    static String salt;
-    static final int SALT_LENGTH = 256;
 
-    @BeforeAll
-    static void setUp() {
-        salt = SecurityPassword.getSalt(SALT_LENGTH);
-    }
 
     @Test
     void successfulVerifying() {
@@ -20,13 +14,14 @@ class SecurityPasswordTest {
         String secondPassword = "second";
         String thirdPassword = "third";
 
-        String firstPasswordResult = SecurityPassword.generateSecurePassword(firstPassword, salt);
-        String secondPasswordResult = SecurityPassword.generateSecurePassword(secondPassword, salt);
-        String thirdPasswordResult = SecurityPassword.generateSecurePassword(thirdPassword, salt);
+        String firstPasswordResult = SecurityPassword.generateSecurePassword(firstPassword);
+        String secondPasswordResult = SecurityPassword.generateSecurePassword(secondPassword);
+        String thirdPasswordResult = SecurityPassword.generateSecurePassword(thirdPassword);
 
-        Assertions.assertTrue(SecurityPassword.verifyUserPassword(firstPassword, firstPasswordResult, salt));
-        Assertions.assertTrue(SecurityPassword.verifyUserPassword(secondPassword, secondPasswordResult, salt));
-        Assertions.assertTrue(SecurityPassword.verifyUserPassword(thirdPassword, thirdPasswordResult, salt));
+
+        Assertions.assertTrue(SecurityPassword.verifyUserPassword(firstPassword, firstPasswordResult));
+        Assertions.assertTrue(SecurityPassword.verifyUserPassword(secondPassword, secondPasswordResult));
+        Assertions.assertTrue(SecurityPassword.verifyUserPassword(thirdPassword, thirdPasswordResult));
     }
 
 }
