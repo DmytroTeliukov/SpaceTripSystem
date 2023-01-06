@@ -6,6 +6,8 @@ public class OperatorTripHistory {
     private User operator;
     private List<Trip> trips;
 
+    public OperatorTripHistory() {}
+
     public OperatorTripHistory(User operator, List<Trip> trips) {
         this.operator = operator;
         this.trips = trips;
@@ -15,8 +17,9 @@ public class OperatorTripHistory {
         return operator;
     }
 
-    public void setOperator(User operator) {
+    public OperatorTripHistory operator(User operator) {
         this.operator = operator;
+        return this;
     }
 
     public List<Trip> getTrips() {
