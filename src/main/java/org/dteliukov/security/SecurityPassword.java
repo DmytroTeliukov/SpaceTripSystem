@@ -11,7 +11,6 @@ import java.util.Random;
 
 public class SecurityPassword {
     private static final int ITERATIONS = 10000;
-    private static final String SALT = "t6kogcjo2OgnjbyV/SOh5s42TvQoCt+RhsZ5rlqZpMw=";
     private static final int KEY_LENGTH = 256;
 
     public static byte[] hash(char[] password, byte[] salt) {
@@ -26,14 +25,14 @@ public class SecurityPassword {
             spec.clearPassword();
         }
     }
-    public static String generateSecurePassword(String password) {
-        byte[] securePassword = hash(password.toCharArray(), SALT.getBytes());
+    public static String generateSecurePassword(String email, String password) {
+        byte[] securePassword = hash(password.toCharArray(), email.getBytes());
 
         return Base64.getEncoder().encodeToString(securePassword);
     }
 
-    public static boolean verifyUserPassword(String providedPassword, String securedPassword) {
-        String newSecurePassword = generateSecurePassword(providedPassword);
+    public static boolean verifyUserPassword(String email, String providedPassword, String securedPassword) {
+        String newSecurePassword = generateSecurePassword(email, providedPassword);
 
         return newSecurePassword.equalsIgnoreCase(securedPassword);
     }
