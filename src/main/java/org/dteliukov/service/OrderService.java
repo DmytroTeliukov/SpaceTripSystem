@@ -37,10 +37,13 @@ public class OrderService {
     public Order getOrder(int id) {
         var order = dao.getOrderById(id);
 
-        return order.orElseThrow(() -> new RuntimeException("User does not exist!"));
+        return order.orElseThrow(() -> new RuntimeException("Order does not exist!"));
     }
 
     public List<Order> getOrdersByTrip(int id) {
         return dao.getOrdersByTrip(id);
+    }
+    public List<Order> getOrdersByUser(String email) {
+        return dao.getOrdersByUser(email);
     }
 }
