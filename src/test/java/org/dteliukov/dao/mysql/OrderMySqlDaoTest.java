@@ -74,6 +74,14 @@ class OrderMySqlDaoTest {
 
     }
 
+    @Test
+    void readAllOrdersByUser() {
+        var orders = orderDao.getOrdersByUser(client.getEmail());
+
+        Assertions.assertFalse(orders.isEmpty());
+        Assertions.assertEquals(order.getId(), orders.get(0).getId());
+    }
+
     @AfterAll
     static void deleteAll() {
         orderDao.deleteOrder(order.getId());

@@ -26,6 +26,7 @@ class OrderServiceTest {
 
     @BeforeAll
     static void setUp() {
+
         userService = new UserService();
         tripService = new TripService();
         orderService = new OrderService();
@@ -70,6 +71,15 @@ class OrderServiceTest {
         var updatedOrder = orderService.getOrder(order.getId());
 
         Assertions.assertNotNull(updatedOrder.getProcessed());
+    }
+
+    @Test
+    void readAllOrdersByUser() {
+        var orders = orderService.getOrdersByUser(client.getEmail());
+
+        Assertions.assertFalse(orders.isEmpty());
+        Assertions.assertNotEquals(0, orders.size());
+        Assertions.assertEquals(order.getId(), orders.get(0).getId());
     }
 
     @Test
