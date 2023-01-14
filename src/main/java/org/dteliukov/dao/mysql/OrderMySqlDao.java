@@ -143,6 +143,42 @@ public class OrderMySqlDao implements OrderDao {
     }
 
     @Override
+    public List<Order> getOrdersByUser(String email) {
+        List<Order> orders = new ArrayList<>();
+        try(var connection = MySqlConnection.getConnection()) {
+            try(var statement = connection.prepareStatement(OrderSqlQuery.GET_ORDERS_BY_USER.getQuery())) {
+                statement.setString(1, email);
+                try (var resultSet = statement.executeQuery()) {
+                    User user = new User();
+                    Trip trip = new Trip();
+                    Order order = new Order();
+                    while (resultSet.next()) {
+                        user.lastname(resultSet.getString("client_lastname"))
+                                .firstname(resultSet.getString("client_firstname"))
+                                .email(resultSet.getString("client_email"))
+                                .phone(resultSet.getString("client_phone"));
+                        trip.id(resultSet.getInt("id_trip"))
+                                .started(resultSet.getString("started"))
+                                .planet(resultSet.getString("planet_name"))
+                                .status(resultSet.getString("trip_status"));
+                        order.id(resultSet.getInt("id_order"))
+                                .client(user.clone())
+                                .trip(trip.clone())
+                                .processed(resultSet.getString("processed"))
+                                .orderedSeats(resultSet.getInt("ordered_seats"))
+                                .paymentAmount(resultSet.getFloat("payment_amount"))
+                                .status(resultSet.getString("order_status"));
+                        orders.add(order.clone());
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return orders;
+    }
+
+    @Override
     public Optional<Order> getOrderById(int id) {
         try(var connection = MySqlConnection.getConnection()) {
             try(var statement = connection.prepareStatement(OrderSqlQuery.GET_ORDER.getQuery())) {

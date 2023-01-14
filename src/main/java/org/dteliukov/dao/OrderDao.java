@@ -12,5 +12,6 @@ public interface OrderDao {
     List<Order> readOrders();
     void deleteOrder(int id);
     List<Order> getOrdersByTrip(int idTrip);
+    List<Order> getOrdersByUser(String email);
     Optional<Order> getOrderById(int id);
 }
