@@ -9,7 +9,7 @@ The MVP which has role-based security, sql database and solve subject domain
 # Requirements :
 - install intellej idea;
 - install MySQL ver. 8.0.26+;
-- install Tomcat ver. 10.x.
+- install Tomcat ver. 10.0.x.
 
 # How to Run?
 - Create database 'space_trip' and business-function using scripts from loder 'sql';
