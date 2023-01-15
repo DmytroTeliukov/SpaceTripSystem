@@ -77,4 +77,8 @@ public class UserService {
 
         return user.orElseThrow(() -> new RuntimeException("User does not exist!"));
     }
+
+    public List<User> readOperators() {
+        return dao.readOperators();
+    }
 }

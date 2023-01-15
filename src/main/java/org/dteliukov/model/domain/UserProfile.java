@@ -7,6 +7,7 @@ public class UserProfile extends User {
     private String role;
     private String status;
 
+    public UserProfile() {}
     public UserProfile(String lastname, String firstname, String email, String phone,
                        String password, String role, String status) {
         super(lastname, firstname, email, phone);

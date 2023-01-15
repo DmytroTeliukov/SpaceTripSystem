@@ -14,6 +14,7 @@ public interface UserDao {
     void updateUser(UserProfile user);
     void deleteUser(String email);
     List<User> readUsers();
+    List<User> readOperators();
     Optional<UserProfile> getUserProfile(String email);
     Optional<User> getUser(String email);
     void setUserStatus(String email, String status);

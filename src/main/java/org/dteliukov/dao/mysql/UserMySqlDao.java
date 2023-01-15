@@ -104,6 +104,28 @@ public class UserMySqlDao implements UserDao {
     }
 
     @Override
+    public List<User> readOperators() {
+        List<User> users = new ArrayList<>();
+        try(var connection = MySqlConnection.getConnection()) {
+            try(var statement = connection.prepareStatement(UserSqlQuery.READ_OPERATORS.getQuery())) {
+                try (var resultSet = statement.executeQuery()) {
+                    User user = new User();
+                    while (resultSet.next()) {
+                        user.lastname(resultSet.getString("lastname"))
+                                .firstname(resultSet.getString("firstname"))
+                                .email(resultSet.getString("email"))
+                                .phone(resultSet.getString("phone"));
+                        users.add(user.clone());
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return users;
+    }
+
+    @Override
     public Optional<UserProfile> getUserProfile(String email) {
         try(var connection = MySqlConnection.getConnection()) {
             try(var statement = connection.prepareStatement(UserSqlQuery.GET_USER.getQuery())) {
