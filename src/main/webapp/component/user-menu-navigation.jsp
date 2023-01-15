@@ -17,7 +17,6 @@
     <div class="navigation_link">
         <a href='<c:url value="/history" />'>Orders</a>
         <a href='<c:url value="/trips" />'>Trips</a>
-        <a href='<c:url value="/contacts" />'>Contacts</a>
         <a href='<c:url value="/profile" />'>Profile</a>
         <a href='<c:url value="/exit" />'>Logout</a>
     </div>
