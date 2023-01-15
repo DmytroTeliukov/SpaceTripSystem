@@ -2,7 +2,7 @@
 The MVP which has role-based security, sql database and solve subject domain
 
 ## Description :
-- This is MVP of ordering trips in solar system;
+- This is MVP of ordering trips to the planets of the solar system;
 - It is role-based security to protect access to some resource;
 - The project which connected to relational database to store information about trips, orders and users.
 
