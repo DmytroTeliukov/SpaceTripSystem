@@ -7,6 +7,7 @@ public enum OrderSqlQuery {
     DELETE_ORDER("delete from `order` where id_order = ?;"),
     READ_ORDERS("select * from order_view"),
     GET_ORDERS_BY_TRIP("select * from order_view where id_trip = ?"),
+    GET_ORDERS_BY_USER("select * from order_view where client_email = ?"),
     GET_ORDER("select * from order_view where id_order = ?");
 
     private final String query;
