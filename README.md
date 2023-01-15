@@ -1,12 +1,15 @@
 # SpaceTripSystem
 The MVP which has role-based security, sql database and solve subject domain
 
-## Description :
+# Description:
 - This is MVP of ordering trips to the planets of the solar system;
 - It is role-based security to protect access to some resource;
 - The project which connected to relational database to store information about trips, orders and users.
 
-# Requirements :
+# Technologies:
+Java 17, Java Servlets, SQL, MySQL  HTML, CSS, JavaScript, Java Server Pages (JSPs);
+
+# Requirements:
 - install intellej idea;
 - install MySQL ver. 8.0.26+;
 - install Tomcat ver. 10.0.x.
