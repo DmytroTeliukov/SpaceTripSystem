@@ -8,17 +8,22 @@ import org.dteliukov.model.domain.Trip;
 import org.dteliukov.model.domain.TripInfo;
 import org.dteliukov.model.domain.User;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TripService {
 
-    private TripDao dao;
+    private final TripDao dao;
 
     public TripService() {
         dao = DaoRepository.getDao(TypeDao.MySQL).getTripDao();
     }
 
     public void createTrip(TripInfo trip) {
+        var pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+
+        trip.started(LocalDateTime.parse(trip.getStarted()).format(pattern));
         dao.createTrip(trip);
     }
 
