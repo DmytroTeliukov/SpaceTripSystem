@@ -190,3 +190,15 @@ BEGIN
     update trip set count_vacancies = current_seats - new.ordered_seats where id_trip = new.fk_trip;
 end if;
 END;
+
+CREATE TRIGGER order_controller_before_update
+    BEFORE UPDATE ON `order`
+    FOR EACH ROW
+BEGIN
+    DECLARE current_seats INT;
+	set current_seats = (select count_vacancies from `trip` where id_trip = new.fk_trip);
+
+    if (new.fk_order_status = (select id_order_status from order_status where `name` = 'DENIED')) then
+    update trip set count_vacancies = current_seats + old.ordered_seats where id_trip = old.fk_trip;
+end if;
+END;
