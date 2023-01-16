@@ -26,7 +26,7 @@
                 <form action='<c:url value="/add-trip" />' method="post">
                     <input type="date" placeholder="Date" name="date" required>
                     <input type="time" placeholder="time" name="time" required>
-                    <input type="number" placeholder="Price" name="cost" min="1" step="0.01"  required>
+                    <input type="number" placeholder="Price" name="price" min="1" step="0.01"  required>
                     <input type="number" placeholder="Count places"  name="countVacancies" min="1"  required>
                     <select name="planet" id="planetSelect" onchange="javascript:flip();">
                         <option url="image/Mercury.png" value="MERCURY">MERCURY</option>

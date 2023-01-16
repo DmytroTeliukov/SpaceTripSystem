@@ -5,6 +5,7 @@ import org.dteliukov.dao.TypeDao;
 import org.dteliukov.dao.UserDao;
 import org.dteliukov.model.authorization.UnauthorizedUser;
 import org.dteliukov.model.domain.UserProfile;
+import org.dteliukov.security.SecurityPassword;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -20,8 +21,9 @@ class UserMySqlDaoTest {
     @BeforeAll
     static void setUser() {
         dao = DaoRepository.getDao(TypeDao.MySQL).getUserDao();
-        user = new UserProfile("Lastname", "Firstname", "test@gmail.com",
-                "0987654321", "1", "CLIENT", "ACTIVE");
+        user = new UserProfile("Smith", "Luis", "admin@space_trip.com",
+                "0987654321", SecurityPassword.generateSecurePassword("admin@space_trip.com", "12345"),
+                "ADMIN", "ACTIVE");
         dao.registration(user);
     }
 

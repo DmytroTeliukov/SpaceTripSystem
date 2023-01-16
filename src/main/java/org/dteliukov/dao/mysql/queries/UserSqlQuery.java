@@ -8,7 +8,7 @@ public enum UserSqlQuery {
     UPDATE_STATUS("call set_user_status(?,?);"),
     DELETE_USER("delete from `user` where email = ?"),
     READ_USERS("select * from `user_view`;"),
-    READ_OPERATORS("select * from user where role_name = 'OPERATOR'"),
+    READ_OPERATORS("select * from user_view where role_name = 'OPERATOR'"),
     GET_USER("select * from `user_view` where email = ?");
 
     private final String query;

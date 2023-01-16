@@ -9,7 +9,12 @@
     <jsp:include page="component/admin-menu-navigation.jsp" />
 </header>
 <div class="body">
-    <a href='<c:url value="/add-operator"/>'>Add operator</a>
+    <div class="profile">
+        <div class="profile-header">
+            <a href='<c:url value="/add-operator"/>' class="edit-button">Add operator</a>
+        </div>
+    </div>
+    <hr>
     <div class="list">
         <c:forEach var="operator" items="${operators}">
             <div class="list-item">
@@ -22,9 +27,9 @@
                         </div>
                     </div>
                     <div class="item-select">
-                        <form method="post" action='<c:url value="/choose-operator" />'>
+                        <form method="post" action='<c:url value="/operators" />'>
                             <input type="hidden" name="email" value=${operator.email}>
-                            <button type="submit" >Choose</button>
+                            <button type="submit" >Fire</button>
                         </form>
                     </div>
                 </div>

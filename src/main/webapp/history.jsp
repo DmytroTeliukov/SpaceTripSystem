@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
     <c:forEach var="order" items="${orders}">
       <div class="list-item">
         <div class="item-header">
-          <p>Order №${order.id}</p><hr>
+          <p>Order №${order.trip.id}</p><hr>
         </div>
         <div class="item">
           <div class="item-information">
@@ -48,7 +49,7 @@
               </c:if>
             </div>
             <div class="item-text">
-              <p>Trip №{order.trip.id}</p>
+              <p>Trip №${order.trip.id}</p>
               <p>Planet: ${order.trip.planet}</p>
               <p>Started: ${order.trip.started}</p>
               <p>Status: ${order.trip.status}</p>

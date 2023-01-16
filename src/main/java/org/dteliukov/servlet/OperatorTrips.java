@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.dteliukov.model.authorization.AuthorizedUser;
+import org.dteliukov.model.domain.User;
 import org.dteliukov.service.TripService;
 import org.dteliukov.service.UserService;
 
@@ -22,11 +23,14 @@ public class OperatorTrips extends HttpServlet {
         userService = new UserService();
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         var user = ((AuthorizedUser) request.getSession().getAttribute("user"));
+        User operator = userService.getUserProfileByEmail(user.email());
+
         request.setAttribute("trips", tripService
-                .getHistoryTripsByOperator(userService.getUserProfileByEmail(user.email())));
+                .getHistoryTripsByOperator(operator).getTrips());
         getServletContext().getRequestDispatcher("/operator-trips.jsp").forward(request, response);
     }
 }

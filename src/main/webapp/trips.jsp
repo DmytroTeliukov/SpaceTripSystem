@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>Z
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,14 @@
     </c:if>
 </header>
 <div class="body">
+    <c:if test="${role == 'ADMIN'}">
+        <div class="profile">
+            <div class="profile-header">
+                <a href='<c:url value="/add-trip"/>' class="edit-button">Add trip</a>
+            </div>
+            <hr>
+        </div>
+    </c:if>
     <div class="list">
         <c:forEach var="trip" items="${trips}">
             <div class="list-item">
@@ -60,7 +69,7 @@
                             <p>Started: ${trip.started}</p>
                             <p>Status: ${trip.status}</p>
                         </div>
-                    </div>
+
                     <c:if test="${role == 'CLIENT'}">
                     <div class="item-select">
                         <form method="post" action='<c:url value="/trips" />'>
@@ -69,7 +78,9 @@
                             <button type="submit" >Order it</button>
 
                         </form>
+                    </div>
                         </c:if>
+
                     </div>
                 </div>
             </div>

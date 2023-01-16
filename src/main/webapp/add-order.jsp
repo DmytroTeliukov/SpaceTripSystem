@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add trip</title>
+    <title>Order trip</title>
     <link rel="stylesheet" href="сss/style.css">
 </head>
 <body>
@@ -20,15 +20,13 @@
         </div>
         <div class="order-form">
             <div class="order-title">
-                <p> Trip </p> <hr>
+                <p> Order from </p> <hr>
             </div>
             <div class="order-input-field">
-                <form action='<c:url value="/add-trip" />' method="post">
-                    <input type="date" placeholder="Date" name="date" required>
-                    <input type="time" placeholder="time" name="time" required>
-                    <input type="number" placeholder="Price" name="cost" min="1" step="0.01"  required>
-                    <input type="number" placeholder="Count places"  name="countVacancies" min="1"  required>
+                <form action='<c:url value="/add-order" />' method="post">
+                    <input type="number" placeholder="Count places"  name="orderedSeats" min="1"  required>
                     <div class="chosed-item"><p>Trip №${trip.id} </p><p>${trip.planet} - ${trip.started}</p></div>
+                    <button  type="submit" >Order trip</button>
                 </form>
             </div>
         </div>

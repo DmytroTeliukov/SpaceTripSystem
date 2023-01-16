@@ -23,7 +23,7 @@
                 <div class="item">
                     <div class="item-information">
                         <div class="item-text">
-                            <p>Count ordered places: ${order.numberOfSeats}</p>
+                            <p>Count ordered places: ${order.orderedSeats}</p>
                             <p>Client: ${order.client.lastname} ${order.client.firstname}</p>
                         </div>
                     </div>

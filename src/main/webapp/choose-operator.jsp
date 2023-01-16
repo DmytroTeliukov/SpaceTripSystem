@@ -21,9 +21,9 @@
                         </div>
                     </div>
                     <div class="item-select">
-                        <form method="post" action='<c:url value="/operators" />'>
+                        <form method="post" action='<c:url value="/choose-operator" />'>
                             <input type="hidden" name="email" value=${operator.email}>
-                            <button type="submit" >Fire</button>
+                            <button type="submit" >Choose</button>
                         </form>
                     </div>
                 </div>

@@ -24,7 +24,7 @@ public class Orders extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var user = ((AuthorizedUser) request.getSession().getAttribute("user"));
         request.setAttribute("role", user.role());
-        request.setAttribute("orders", service.readOrders());
+        request.setAttribute("orders", service.getOrdersByUser(user.email()));
         getServletContext().getRequestDispatcher("/history.jsp").forward(request, response);
     }
 

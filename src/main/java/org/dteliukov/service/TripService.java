@@ -21,9 +21,10 @@ public class TripService {
     }
 
     public void createTrip(TripInfo trip) {
-        var pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+        var pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        var datetime = LocalDateTime.parse(trip.getStarted().concat(":00").replace(" ", "T")).format(pattern);
 
-        trip.started(LocalDateTime.parse(trip.getStarted()).format(pattern));
+        trip.started(datetime);
         dao.createTrip(trip);
     }
 

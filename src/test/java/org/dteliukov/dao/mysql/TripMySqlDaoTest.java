@@ -28,10 +28,11 @@ class TripMySqlDaoTest {
         operator = new UserProfile("Lastname", "Firstname", "operator@gmail.com",
                 "0987654322", "1", "OPERATOR", "ACTIVE");
         userDao.registration(operator);
-        var pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
+        var pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         tripInfo = new TripInfo(1, operator, LocalDateTime.now().format(pattern),
                 LocalDateTime.now().plusDays(2).format(pattern), 160.50f, 10,
                 "MERCURY", "ACTIVE");
+        System.out.println(tripInfo.getStarted());
         tripDao.createTrip(tripInfo);
         var trips = tripDao.readTrips();
         tripInfo.id(trips.get(trips.size()-1).getId());

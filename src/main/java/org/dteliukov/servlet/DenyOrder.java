@@ -21,7 +21,7 @@ public class DenyOrder extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        service.updateOrderStatus(Integer.parseInt(request.getParameter("id_order")), "DENIED");
-        response.sendRedirect(getServletContext().getContextPath() + "/operator-orders");
+        service.updateOrderStatus(Integer.parseInt(request.getParameter("id")), "DENIED");
+        response.sendRedirect(getServletContext().getContextPath() + "/operator-trips");
     }
 }

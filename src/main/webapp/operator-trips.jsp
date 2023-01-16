@@ -54,7 +54,7 @@
                             <p>Status: ${trip.status}</p>
                         </div>
                         <div class="item-select">
-                            <a href='<c:url value="/check-orders?id=${order.id}" />'>Check orders</a>
+                            <a href='<c:url value="/check-orders?id=${trip.id}" />'>Check orders</a>
                         </div>
                     </div>
                 </div>

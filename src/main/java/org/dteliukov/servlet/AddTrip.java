@@ -17,6 +17,11 @@ import java.io.IOException;
 public class AddTrip extends HttpServlet {
     private TripService service;
 
+    @Override
+    public void init() throws ServletException {
+        service = new TripService();
+    }
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
